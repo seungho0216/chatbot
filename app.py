@@ -1,9 +1,9 @@
 from flask import Flask, request, jsonify
+from bs4 import BeautifulSoup
 import json
 import os
 import random
 import requests
-from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 
@@ -68,7 +68,7 @@ def message():
         img_url = pick_movie["img"]
     
     else:
-        return_msg = "현재 메뉴만 지원합니다."
+        return_msg = "현재 지원하지 않는 기능입니다."
         
     if img_bool == True:
         json_return = {
@@ -85,22 +85,17 @@ def message():
             "buttons" : ["메뉴", "로또", "고양이", "영화"]
         }
     }
-    
     # 카톡에서 명령어 입력시 text 에 있는 문구가 출력됨
-    # 현재는 사용자가 말하는것을 그대로 답 하는 상태
     else:
         json_return = {
             "message": {
                 "text":return_msg
-            
             },
             "keyboard": {
                 "type" : "buttons",
                 "buttons" : ["메뉴", "로또", "고양이", "영화"]
-            
             }
         }
     return jsonify(json_return)
-    
     
 app.run(host=os.getenv('IP', '0.0.0.0'),port=int(os.getenv('PORT', 8080)))
