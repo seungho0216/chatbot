@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import json
 import os
 import random
+import requests
 
 app = Flask(__name__)
 
@@ -30,6 +31,13 @@ def message():
         numbers = list(range(1,46))
         pick = random.sample(numbers, 6)
         return_msg = str(sorted(pick))
+    elif msg == "고양이":
+        url = "https://api.thecatapi.com/v1/images/search?mime_types=jpg"
+        req = requests.get(url).json()
+        return_msg = req[0]['url']
+    elif msg == "시발":
+        fuck = ["시발","씨발","개새끼","시-발","씨-발","ㅅㅂ","ㅗㅗ","ㅗ","^ㅗ^"]
+        return_msg = random.choice(fuck)
     else:
         return_msg = "현재 메뉴만 지원합니다."
         
