@@ -66,9 +66,6 @@ def message():
         
         return_msg = "%s/평점:%s/예매율:%s" % (pick_movie['title'],pick_movie['star'],pick_movie['reserve'])
         img_url = pick_movie["img"]
-    elif msg == "시발":
-        fuck = ["시발","씨발","개새끼","시-발","씨-발","ㅅㅂ","ㅗㅗ","ㅗ","^ㅗ^"]
-        return_msg = random.choice(fuck)
     
     else:
         return_msg = "현재 메뉴만 지원합니다."
